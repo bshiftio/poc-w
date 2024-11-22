@@ -3,10 +3,8 @@ import { StrictMode } from "react";
 import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 
 import { Root } from "@/components/Root.tsx";
-import { EnvUnsupported } from "@/components/EnvUnsupported.tsx";
 import { init } from "@/telegram/init.ts";
 
-import "@telegram-apps/telegram-ui/dist/styles.css";
 import "./index.css";
 
 // Mock the environment in case, we are outside Telegram.
@@ -14,6 +12,7 @@ import "./telegram/mockEnv.ts";
 
 import { Provider } from "react-redux";
 import { store } from "@/state/store.ts";
+import { ErrorBoundary } from "./components/ErrorBoundary.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
@@ -29,5 +28,5 @@ try {
     </StrictMode>
   );
 } catch (e) {
-  root.render(<EnvUnsupported />);
+  root.render(<ErrorBoundary />);
 }

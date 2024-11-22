@@ -1,17 +1,18 @@
 import { useLaunchParams, miniApp, useSignal } from "@telegram-apps/sdk-react";
-import { AppRoot } from "@telegram-apps/telegram-ui";
 import { Navigate, Route, Routes, HashRouter } from "react-router-dom";
-
 import { routes } from "@/navigation/routes.tsx";
+import { ThemeProvider, useTheme } from "./theme-provider";
 
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
 
+  const { setTheme } = useTheme();
+
   return (
-    <AppRoot
-      appearance={isDark ? "dark" : "light"}
-      platform={["macos", "ios"].includes(lp.platform) ? "ios" : "base"}
+    <ThemeProvider
+      defaultTheme={isDark ? "dark" : "light"}
+      storageKey="vite-ui-theme"
     >
       <HashRouter>
         <Routes>
@@ -21,6 +22,6 @@ export function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </HashRouter>
-    </AppRoot>
+    </ThemeProvider>
   );
 }

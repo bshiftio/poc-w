@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react-swc";
 import mkcert from "vite-plugin-mkcert";
+import path from "path";
+import Unfonts from "unplugin-fonts/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,7 +18,23 @@ export default defineConfig({
     // Create a custom SSL certificate valid for the local machine.
     // https://www.npmjs.com/package/vite-plugin-mkcert
     mkcert(),
+    // Custom font from assets/font
+    Unfonts({
+      custom: {
+        families: [
+          {
+            name: "Geist",
+            src: "./src/assets/fonts/geist/*.woff2",
+          },
+        ],
+      },
+    }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   publicDir: "./public",
   server: {
     // Exposes your dev server and makes it accessible for the devices in the same network.
