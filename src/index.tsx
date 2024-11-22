@@ -12,21 +12,16 @@ import "./telegram/mockEnv.ts";
 
 import { Provider } from "react-redux";
 import { store } from "@/state/store.ts";
-import { ErrorBoundary } from "./components/ErrorBoundary.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
-try {
-  // Configure all application dependencies.
-  init(retrieveLaunchParams().startParam === "debug" || import.meta.env.DEV);
+// Configure all application dependencies.
+init(retrieveLaunchParams().startParam === "debug" || import.meta.env.DEV);
 
-  root.render(
-    <StrictMode>
-      <Provider store={store}>
-        <Root />
-      </Provider>
-    </StrictMode>
-  );
-} catch (e) {
-  root.render(<ErrorBoundary />);
-}
+root.render(
+  <StrictMode>
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  </StrictMode>
+);

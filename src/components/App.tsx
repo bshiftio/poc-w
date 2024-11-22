@@ -1,13 +1,14 @@
 import { useLaunchParams, miniApp, useSignal } from "@telegram-apps/sdk-react";
 import { Navigate, Route, Routes, HashRouter } from "react-router-dom";
 import { routes } from "@/navigation/routes.tsx";
-import { ThemeProvider, useTheme } from "./theme-provider";
+import { ThemeProvider } from "./theme-provider";
 
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
 
-  const { setTheme } = useTheme();
+  const accentColor = lp.themeParams.accentTextColor;
+  console.log(accentColor);
 
   return (
     <ThemeProvider
