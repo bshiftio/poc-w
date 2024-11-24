@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
 import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 
-import { Root } from "@/components/Root.tsx";
+import { Root } from "@/Root.tsx";
 import { init } from "@/telegram/init.ts";
 
 import "./index.css";
@@ -11,7 +11,7 @@ import "./index.css";
 import "./telegram/mockEnv.ts";
 
 import { Provider } from "react-redux";
-import { store } from "@/state/store.ts";
+import { store } from "@/framework/presentation/store/store.ts";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 

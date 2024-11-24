@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
-import { Page } from "@/components/Page.tsx";
-import Counter from "@/components/Counter";
+import { Page } from "@/framework/presentation/components/Page";
+import Counter from "@/framework/presentation/components/Counter";
 
 export const IndexPage: FC = () => {
   return (
