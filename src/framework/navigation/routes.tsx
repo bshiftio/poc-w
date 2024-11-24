@@ -1,6 +1,6 @@
 import type { ComponentType, JSX } from "react";
 
-import { IndexPage } from "@/pages/IndexPage/IndexPage";
+import { IndexPage } from "@/framework/pages/IndexPage/IndexPage";
 
 interface Route {
   path: string;
