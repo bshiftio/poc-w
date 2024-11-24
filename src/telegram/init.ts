@@ -41,9 +41,4 @@ export function init(debug: boolean): void {
   // Define components-related CSS variables.
   miniApp.bindCssVars();
   themeParams.bindCssVars();
-
-  if (miniApp.setHeaderColor.isAvailable()) {
-    miniApp.setHeaderColor("#09090B");
-    miniApp.headerColor(); // 'bg_color'
-  }
 }
