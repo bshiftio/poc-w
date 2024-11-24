@@ -10,6 +10,14 @@ export function App() {
   const accentColor = lp.themeParams.accentTextColor;
   console.log(accentColor);
 
+  if (isDark) {
+    miniApp.setHeaderColor("#09090B");
+    miniApp.headerColor(); // 'bg_color'
+  } else {
+    miniApp.setHeaderColor("#FFFFFF");
+    miniApp.headerColor(); // 'bg_color'
+  }
+
   return (
     <ThemeProvider
       defaultTheme={isDark ? "dark" : "light"}
