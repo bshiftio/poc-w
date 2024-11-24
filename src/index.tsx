@@ -12,6 +12,7 @@ import "./telegram/mockEnv.ts";
 
 import { Provider } from "react-redux";
 import { store } from "@/framework/presentation/store/store.ts";
+import { Toaster } from "./components/ui/toaster.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
@@ -22,6 +23,7 @@ root.render(
   <StrictMode>
     <Provider store={store}>
       <Root />
+      <Toaster />
     </Provider>
   </StrictMode>
 );

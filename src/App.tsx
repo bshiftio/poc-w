@@ -1,7 +1,7 @@
 import { useLaunchParams, miniApp, useSignal } from "@telegram-apps/sdk-react";
 import { Navigate, Route, Routes, HashRouter } from "react-router-dom";
-import { routes } from "@/framework/navigation/routes";
-import { ThemeProvider } from "./framework/presentation/components/theme-provider";
+import { ThemeProvider } from "./components/ui/theme-provider";
+import { routes } from "./navigation/routes";
 
 export function App() {
   const lp = useLaunchParams();

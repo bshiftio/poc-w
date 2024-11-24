@@ -1,16 +1,40 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { decrement, increment } from "../viewmodel/slices/CounterSlice";
-import { Button } from "./ui/button";
-import { GetCounterEvent } from "../viewmodel/events/GetCounterEvent";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../framework/presentation/store/hooks";
+import { GetCounterEvent } from "../framework/presentation/viewmodel/events/GetCounterEvent";
+import { Button } from "@/components/ui/button";
+import {
+  decrement,
+  increment,
+} from "../framework/presentation/viewmodel/slices/CounterSlice";
+import { useToast } from "@/hooks/use-toast";
 
 const Counter = () => {
   const dispatch = useAppDispatch();
   const { counter, status } = useAppSelector((state) => state.CounterSlice);
+  const { toast } = useToast();
 
   useEffect(() => {
     dispatch(GetCounterEvent().getCounterEvent());
   }, [dispatch]);
+
+  const handleIncrement = () => {
+    dispatch(increment());
+  };
+
+  const handleDecrement = () => {
+    if (counter.value <= 0) {
+      toast({
+        variant: "destructive",
+        title: "Action not allowed",
+        description: "Counter value cannot go below 0.",
+      });
+      return;
+    }
+    dispatch(decrement());
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
@@ -21,7 +45,7 @@ const Counter = () => {
         <Button
           variant={"outline"}
           className="w-full sm:w-auto"
-          onClick={() => dispatch(increment())}
+          onClick={() => handleIncrement()}
         >
           Increment
         </Button>
@@ -29,7 +53,7 @@ const Counter = () => {
         <Button
           variant={"secondary"}
           className="w-full sm:w-auto"
-          onClick={() => dispatch(decrement())}
+          onClick={() => handleDecrement()}
         >
           Decrement
         </Button>
