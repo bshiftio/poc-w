@@ -1,7 +1,14 @@
-import { useLaunchParams, miniApp, useSignal } from "@telegram-apps/sdk-react";
+import {
+  useLaunchParams,
+  miniApp,
+  useSignal,
+  biometry,
+} from "@telegram-apps/sdk-react";
 import { Navigate, Route, Routes, HashRouter } from "react-router-dom";
-import { ThemeProvider } from "./components/ui/theme-provider";
+
 import { routes } from "./navigation/routes";
+import { useEffect } from "react";
+import { ThemeProvider } from "./framework/presentation/components/ui/theme-provider";
 
 export function App() {
   const lp = useLaunchParams();
@@ -12,11 +19,21 @@ export function App() {
 
   if (isDark) {
     miniApp.setHeaderColor("#09090B");
-    miniApp.headerColor(); // 'bg_color'
+    miniApp.headerColor();
   } else {
     miniApp.setHeaderColor("#FFFFFF");
-    miniApp.headerColor(); // 'bg_color'
+    miniApp.headerColor();
   }
+  useEffect(() => {
+    const handleBiometryAccess = async () => {
+      if (biometry.requestAccess.isAvailable()) {
+        const granted = await biometry.requestAccess();
+        console.log(granted);
+      }
+    };
+
+    handleBiometryAccess();
+  }, []);
 
   return (
     <ThemeProvider

@@ -6,6 +6,7 @@ import {
   initData,
   $debug,
   init as initSDK,
+  biometry,
 } from "@telegram-apps/sdk-react";
 
 /**
@@ -41,4 +42,9 @@ export function init(debug: boolean): void {
   // Define components-related CSS variables.
   miniApp.bindCssVars();
   themeParams.bindCssVars();
+
+  // mount biometry
+  if (biometry.mount.isAvailable()) {
+    biometry.mount();
+  }
 }

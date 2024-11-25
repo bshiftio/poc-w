@@ -1,15 +1,11 @@
 import { useEffect } from "react";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../framework/presentation/store/hooks";
-import { GetCounterEvent } from "../framework/presentation/viewmodel/events/GetCounterEvent";
-import { Button } from "@/components/ui/button";
-import {
-  decrement,
-  increment,
-} from "../framework/presentation/viewmodel/slices/CounterSlice";
+
 import { useToast } from "@/hooks/use-toast";
+import { biometry } from "@telegram-apps/sdk-react";
+import { GetCounterEvent } from "@/framework/presentation/viewmodel/Counter/events/GetCounterEvent";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { decrement, increment } from "../viewmodel/Counter/slice/CounterSlice";
+import { Button } from "./ui/button";
 
 const Counter = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +32,18 @@ const Counter = () => {
     dispatch(decrement());
   };
 
+  const checkFaceId = async () => {
+    const { status, token } = await biometry.authenticate({
+      reason: "Please!",
+    });
+
+    if (status === "authorized") {
+      console.log(`Authorized. Token: ${token}`);
+    } else {
+      console.log("Not authorized");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
       <h2 className="text-2xl font-bold mb-4 text-center">
@@ -56,6 +64,14 @@ const Counter = () => {
           onClick={() => handleDecrement()}
         >
           Decrement
+        </Button>
+
+        <Button
+          variant={"secondary"}
+          className="w-full sm:w-auto"
+          onClick={() => checkFaceId()}
+        >
+          Check Face Id
         </Button>
       </div>
     </div>

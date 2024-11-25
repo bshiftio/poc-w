@@ -1,5 +1,5 @@
 import { createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { CounterState } from "../slices/CounterSlice";
+import { CounterState } from "../slice/CounterSlice";
 import di from "@/di";
 import Counter from "@/business/domain/Counter";
 

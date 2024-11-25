@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { CounterState } from "../slices/CounterSlice";
+import { CounterState } from "../slice/CounterSlice";
 import Counter from "@/business/domain/Counter";
 import di from "@/di";
 
