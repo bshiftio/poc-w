@@ -1,7 +1,6 @@
 import { type FC } from "react";
 import { initData, useSignal } from "@telegram-apps/sdk-react";
-
-import { Page } from "@/components/Page.tsx";
+import { Page } from "../components/Page";
 
 export const InitDataPage: FC = () => {
   const initDataRaw = useSignal(initData.raw);

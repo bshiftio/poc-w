@@ -1,4 +1,4 @@
-import { App } from "@/components/App.tsx";
+import { App } from "./App";
 
 export function Root() {
   return <App />;
