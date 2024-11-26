@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button } from "../components/ui/button";
+import { Switch } from "../components/ui/switch";
 
 import {
   loadAppSettings,
@@ -41,30 +41,33 @@ const SettingsPage = () => {
       {settings && (
         <div className="w-full max-w-md text-center">
           <h2 className="text-lg font-semibold mb-4">Current Settings</h2>
-          <ul className="mb-8 text-left">
-            <li>
-              <strong>Theme:</strong>{" "}
-              {settings.theme === "dark" ? "Dark" : "Light"}
-            </li>
-            <li>
-              <strong>Notifications:</strong>{" "}
-              {settings.notificationsEnabled ? "Enabled" : "Disabled"}
-            </li>
-            <li>
-              <strong>Auto-Update:</strong>{" "}
-              {settings.autoUpdate ? "Enabled" : "Disabled"}
-            </li>
-          </ul>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button variant={"outline"} onClick={toggleTheme}>
-              Toggle Theme
-            </Button>
-            <Button variant={"default"} onClick={toggleNotifications}>
-              Toggle Notifications
-            </Button>
-            <Button variant={"ghost"} onClick={toggleAutoUpdate}>
-              Toggle Auto-Update
-            </Button>
+          <div className="space-y-4">
+            {/* Theme Switch */}
+            <div className="flex items-center justify-between">
+              <span className="text-left font-medium">Dark Theme</span>
+              <Switch
+                checked={settings.theme === "dark"}
+                onCheckedChange={toggleTheme}
+              />
+            </div>
+
+            {/* Notifications Switch */}
+            <div className="flex items-center justify-between">
+              <span className="text-left font-medium">Notifications</span>
+              <Switch
+                checked={settings.notificationsEnabled}
+                onCheckedChange={toggleNotifications}
+              />
+            </div>
+
+            {/* Auto-Update Switch */}
+            <div className="flex items-center justify-between">
+              <span className="text-left font-medium">Auto-Update</span>
+              <Switch
+                checked={settings.autoUpdate}
+                onCheckedChange={toggleAutoUpdate}
+              />
+            </div>
           </div>
         </div>
       )}
