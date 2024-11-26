@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter/counterSlice";
 import { useDispatch, useSelector } from "react-redux";
+import appSettingsReducer from "@/presentation/store/slices/appSettingsSlice";
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    appSettings: appSettingsReducer,
   },
 });
 
@@ -16,4 +16,3 @@ export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
 
 // export selectors
-export const selectCount = (state: RootState) => state.counter;
