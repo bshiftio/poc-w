@@ -7,7 +7,7 @@ import Unfonts from "unplugin-fonts/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "",
+  base: "poc-w",
   plugins: [
     // Allows using React dev server along with building a React application with Vite.
     // https://npmjs.com/package/@vitejs/plugin-react-swc
@@ -17,7 +17,7 @@ export default defineConfig({
     tsconfigPaths(),
     // Create a custom SSL certificate valid for the local machine.
     // https://www.npmjs.com/package/vite-plugin-mkcert
-    // mkcert(),
+    mkcert(),
     // Custom font from assets/font
     Unfonts({
       custom: {
